@@ -8,22 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		C30428981F2AB4CA00554643 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30428971F2AB4CA00554643 /* AppDelegate.swift */; };
-		C304289A1F2AB4CA00554643 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30428991F2AB4CA00554643 /* ViewController.swift */; };
+		C304289A1F2AB4CA00554643 /* GPACalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30428991F2AB4CA00554643 /* GPACalculatorViewController.swift */; };
 		C304289D1F2AB4CA00554643 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C304289B1F2AB4CA00554643 /* Main.storyboard */; };
 		C30428A01F2AB4CA00554643 /* GPA_Calculator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C304289E1F2AB4CA00554643 /* GPA_Calculator.xcdatamodeld */; };
 		C30428A21F2AB4CA00554643 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C30428A11F2AB4CA00554643 /* Assets.xcassets */; };
 		C30428A51F2AB4CA00554643 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C30428A31F2AB4CA00554643 /* LaunchScreen.storyboard */; };
+		C30428AD1F2AB79C00554643 /* AddClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30428AC1F2AB79C00554643 /* AddClassViewController.swift */; };
+		C30428AF1F2AB82700554643 /* GPACalculatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30428AE1F2AB82700554643 /* GPACalculatorModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C30428941F2AB4CA00554643 /* GPA Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GPA Calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C30428971F2AB4CA00554643 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C30428991F2AB4CA00554643 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C30428991F2AB4CA00554643 /* GPACalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPACalculatorViewController.swift; sourceTree = "<group>"; };
 		C304289C1F2AB4CA00554643 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C304289F1F2AB4CA00554643 /* GPA_Calculator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GPA_Calculator.xcdatamodel; sourceTree = "<group>"; };
 		C30428A11F2AB4CA00554643 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C30428A41F2AB4CA00554643 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C30428A61F2AB4CA00554643 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C30428AC1F2AB79C00554643 /* AddClassViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClassViewController.swift; sourceTree = "<group>"; };
+		C30428AE1F2AB82700554643 /* GPACalculatorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPACalculatorModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +61,9 @@
 			isa = PBXGroup;
 			children = (
 				C30428971F2AB4CA00554643 /* AppDelegate.swift */,
-				C30428991F2AB4CA00554643 /* ViewController.swift */,
+				C30428AE1F2AB82700554643 /* GPACalculatorModel.swift */,
+				C30428991F2AB4CA00554643 /* GPACalculatorViewController.swift */,
+				C30428AC1F2AB79C00554643 /* AddClassViewController.swift */,
 				C304289B1F2AB4CA00554643 /* Main.storyboard */,
 				C30428A11F2AB4CA00554643 /* Assets.xcassets */,
 				C30428A31F2AB4CA00554643 /* LaunchScreen.storyboard */,
@@ -140,7 +146,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C304289A1F2AB4CA00554643 /* ViewController.swift in Sources */,
+				C304289A1F2AB4CA00554643 /* GPACalculatorViewController.swift in Sources */,
+				C30428AF1F2AB82700554643 /* GPACalculatorModel.swift in Sources */,
+				C30428AD1F2AB79C00554643 /* AddClassViewController.swift in Sources */,
 				C30428981F2AB4CA00554643 /* AppDelegate.swift in Sources */,
 				C30428A01F2AB4CA00554643 /* GPA_Calculator.xcdatamodeld in Sources */,
 			);
