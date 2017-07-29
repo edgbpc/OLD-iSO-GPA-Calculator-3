@@ -8,6 +8,10 @@
 
 import Foundation
 
+protocol GPACalculatorModelDelegate: class {
+    func dataRefreshed()
+}
+
 struct Class {
     let substitute: Bool?
     let courseName: String
@@ -22,6 +26,8 @@ struct Class {
 class GPACalculatorModel {
 
     private var classes = [Class]()
+    
+    weak var delegate: GPACalculatorModelDelegate?
     
     private var initialGPA: Double?
     private var initialCreditHours: Double?
@@ -42,6 +48,7 @@ class GPACalculatorModel {
     
     func save(classToAdd: Class){
         classes.append(classToAdd)
+        delegate?.dataRefreshed()
        // print(classes)
     }
     

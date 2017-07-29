@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class GPACalculatorViewController: UIViewController {
     
     let model = GPACalculatorModel()
@@ -19,7 +21,7 @@ class GPACalculatorViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.rowHeight = 64
-    //    model.delegate = self
+        model.delegate = self
         
     }
 
@@ -41,10 +43,15 @@ class GPACalculatorViewController: UIViewController {
 extension GPACalculatorViewController: AddClassViewControllerDelegate{
     func save(classToAdd: Class){
         model.save(classToAdd: classToAdd)
+         
     }
-    
 }
 
+extension GPACalculatorViewController: GPACalculatorModelDelegate {
+    func dataRefreshed() {
+        tableView.reloadData()
+    }
+}
 extension GPACalculatorViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

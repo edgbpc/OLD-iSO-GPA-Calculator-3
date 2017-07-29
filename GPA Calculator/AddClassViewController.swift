@@ -62,6 +62,7 @@ class AddClassViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         let classToAdd = Class(substitute: isSubstitue, courseName: courseName, creditHour: creditHours!, previousGrade: previousGrade, newGrade: newGrade)
 //
         delegate?.save(classToAdd: classToAdd)
+        let _ = navigationController?.popViewController(animated: true)
         
     }
 

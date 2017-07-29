@@ -16,10 +16,11 @@ class ClassListTableViewCell: UITableViewCell {
     
     @IBOutlet weak var gradePoints: UILabel!
     
-    func decorate(with classToAdd: Class) {
+    func decorate(with classToShow: Class) {
+        courseName.text = classToShow.courseName
+        gradePoints.text = ""
         
-        courseName.text = "test name"
-        gradePoints.text = "12"
+   
     
 
     }
