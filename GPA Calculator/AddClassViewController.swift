@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AddClassViewControllerDelegate: class{
-    func save(class: Class)
+    func save(classToAdd: Class)
 }
 
 class AddClassViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
@@ -43,9 +43,9 @@ class AddClassViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     @IBAction func commitClassButtonTapped(_ sender: Any) {
-        var courseName = courseNameField.text ?? ""
+        let courseName = courseNameField.text ?? ""
         let isSubstitue = isSubstituteSwitch.isOn
-        let creditHours = Int(creditHoursField.text ?? "")
+        let creditHours = Double(creditHoursField.text ?? "")
        
         let previousGrade = gradePickerData[previousGradePicker.selectedRow(inComponent: 0)]
         let newGrade = gradePickerData[newGradePicker.selectedRow(inComponent: 0)]
@@ -59,9 +59,9 @@ class AddClassViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
   
         
         //left off here
-//        let tempClass = Class(courseName: courseName, substitute: substitute, newCreditHour: newCreditHour, previousCreditHour: previousCreditHour, previousGrade: previousGrade, newGrade: newGrade)
-//        
-//        delegate?.save(class: tempClass)
+        let classToAdd = Class(substitute: isSubstitue, courseName: courseName, creditHour: creditHours!, previousGrade: previousGrade, newGrade: newGrade)
+//
+        delegate?.save(classToAdd: classToAdd)
         
     }
 
@@ -104,3 +104,5 @@ class AddClassViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     */
 
 }
+
+
