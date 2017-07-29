@@ -13,10 +13,10 @@ protocol GPACalculatorModelDelegate: class {
 }
 
 struct Class {
-    let substitute: Bool?
+    let substitute: Bool
     let courseName: String
     let creditHour: Double
-    let previousGrade: String?
+    let previousGrade: String
     let newGrade: String
 
     func getGradePointValue() -> Double {
@@ -37,6 +37,27 @@ struct Class {
         default: return 0
         }
     }
+
+    func getPreviousGradePointValue() -> Double {
+        switch previousGrade{
+        case "A" : return 4.0
+        case "A-" : return 3.7
+        case "B+" : return 3.3
+        case "B" : return 3.0
+        case "B-" : return 2.7
+        case "C+" : return 2.3
+        case "C" : return 2.0
+        case "C-" : return 1.7
+        case "D+" : return 1.3
+        case "D" : return 1.0
+        case "D-" : return 0.7
+        case "F" : return 0
+        case "FN" : return 0
+        default: return 0
+        }
+    
+    }
+    
 }
 
 
@@ -61,11 +82,13 @@ class GPACalculatorModel {
         return classes.count
     }
     
+
+    
     func calculateNewGradePoints() -> Double {
         var sumOfNewGradePoints: Double = 0
         
         for index in 0..<classes.count {
-            
+         
             sumOfNewGradePoints += (classes[index].getGradePointValue()*classes[index].creditHour)
            }
         
@@ -76,20 +99,48 @@ class GPACalculatorModel {
         var sumOfNewCreditHoursCompleted: Double = 0
         
         for index in 0..<classes.count {
+            
             sumOfNewCreditHoursCompleted += (classes[index].creditHour)
         }
         return sumOfNewCreditHoursCompleted
     }
     
+    func calculateSubstitutedGradePointsToRemove() -> Double {
+        var substitutedGradePointsToRemove: Double = 0
+        
+        for index in  0..<classes.count{
+            if classes[index].substitute {
+                substitutedGradePointsToRemove += (classes[index].creditHour * classes[index].getPreviousGradePointValue())            }
+        }
+            return substitutedGradePointsToRemove
+    }
+    
+    func calculateSubstitutedCreditHoursToRemove() -> Double {
+        var substitutedCreditHoursToRemove: Double = 0
+        
+        for index in  0..<classes.count {
+            if classes[index].substitute {
+                substitutedCreditHoursToRemove += (classes[index].creditHour)
+            }
+        }
+        return substitutedCreditHoursToRemove
+
+    }
+    
+    
+    
     func calculateProjectedGPA() -> String {
         
+        let newGradePoints = initialGradePoints - calculateSubstitutedGradePointsToRemove() + calculateNewGradePoints()
+       
+        let newCreditHours = initialCreditHours - calculateSubstitutedCreditHoursToRemove() + calculateNewCreditHoursCompleted()
         
-        let newGradePoints = initialGradePoints + calculateNewGradePoints()
-        let newCreditHours = initialCreditHours + calculateNewCreditHoursCompleted()
+      
+        
         
         let projectedGPA = newGradePoints/newCreditHours
 
-        return String(projectedGPA)
+        return String(projectedGPA.roundTo(places: 2))
     }
 
 
