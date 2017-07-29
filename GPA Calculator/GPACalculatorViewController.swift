@@ -12,9 +12,15 @@ class GPACalculatorViewController: UIViewController {
     
     let model = GPACalculatorModel()
 
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        tableView.dataSource = self
+        tableView.rowHeight = 64
+    //    model.delegate = self
+        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
@@ -38,3 +44,24 @@ extension GPACalculatorViewController: AddClassViewControllerDelegate{
     }
     
 }
+
+extension GPACalculatorViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return model.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard
+            let cell = tableView.dequeueReusableCell(withIdentifier: "classCell",
+                                                     for: indexPath) as? ClassListTableViewCell,
+            let classToShow = model.classToShow(atIndex: indexPath.row)
+            else { return UITableViewCell() }
+        
+        cell.decorate(with: classToShow)
+        cell.accessoryType = UITableViewCellAccessoryType.none
+        return cell
+    }
+}
+
+
