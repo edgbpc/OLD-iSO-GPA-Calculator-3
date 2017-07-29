@@ -15,12 +15,15 @@ protocol AddClassViewControllerDelegate: class{
 class AddClassViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     weak var delegate: AddClassViewControllerDelegate?
-
+    
+    @IBOutlet weak var courseNameField: UITextField!
+    @IBOutlet weak var isSubstituteSwitch: UISwitch!
+    @IBOutlet weak var creditHoursField: UITextField!
     @IBOutlet weak var previousGradePicker: UIPickerView!
+    @IBOutlet weak var newGradePicker: UIPickerView!
     
     var gradePickerData: [String] = [String]()
     
-    @IBOutlet weak var newGradePicker: UIPickerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,12 +43,25 @@ class AddClassViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     @IBAction func commitClassButtonTapped(_ sender: Any) {
+        var courseName = courseNameField.text ?? ""
+        let isSubstitue = isSubstituteSwitch.isOn
+        let creditHours = Int(creditHoursField.text ?? "")
+       
+        let previousGrade = gradePickerData[previousGradePicker.selectedRow(inComponent: 0)]
+        let newGrade = gradePickerData[newGradePicker.selectedRow(inComponent: 0)]
+
+        print(courseName)
+        print(isSubstitue)
+        print(creditHours ?? 0)
+        print(previousGrade)
+        print(newGrade)
         
+  
         
         //left off here
-        let tempClass = Class(className: "className", creditHour: 50 )
-        
-        delegate?.save(class: tempClass)
+//        let tempClass = Class(courseName: courseName, substitute: substitute, newCreditHour: newCreditHour, previousCreditHour: previousCreditHour, previousGrade: previousGrade, newGrade: newGrade)
+//        
+//        delegate?.save(class: tempClass)
         
     }
 
@@ -70,9 +86,11 @@ class AddClassViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     // Catpure the picker view selection
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        // This method is triggered whenever the user makes a change to the picker selection.
-        // The parameter named row and component represents what was selected.
+    @nonobjc func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) -> String  {
+    
+        return gradePickerData[row] as String
+        
+   
     }
 
     /*

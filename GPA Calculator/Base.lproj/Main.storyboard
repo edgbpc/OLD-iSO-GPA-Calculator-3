@@ -243,6 +243,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="courseNameField" destination="Ljy-SM-8N4" id="iRj-sb-eEn"/>
+                        <outlet property="creditHoursField" destination="Hjl-YO-qaG" id="dgc-Ga-nbE"/>
+                        <outlet property="isSubstituteSwitch" destination="hVt-ik-RSb" id="9jI-cw-Sjh"/>
                         <outlet property="newGradePicker" destination="NDr-cE-7cw" id="19E-s4-gKR"/>
                         <outlet property="previousGradePicker" destination="kEx-T3-g9P" id="Xrd-FB-Qg2"/>
                     </connections>
