@@ -50,11 +50,11 @@ class AddClassViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         let previousGrade = gradePickerData[previousGradePicker.selectedRow(inComponent: 0)]
         let newGrade = gradePickerData[newGradePicker.selectedRow(inComponent: 0)]
 
-        print(courseName)
-        print(isSubstitue)
-        print(creditHours ?? 0)
-        print(previousGrade)
-        print(newGrade)
+//        print(courseName)
+//        print(isSubstitue)
+//        print(creditHours ?? 0)
+//        print(previousGrade)
+//        print(newGrade)
         
   
         

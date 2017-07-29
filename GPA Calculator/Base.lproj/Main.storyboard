@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ns6-xT-gns">
-                                <rect key="frame" x="25" y="89" width="300" height="100"/>
+                                <rect key="frame" x="25" y="89" width="300" height="135"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yiy-qA-KNB" userLabel="Current GPA stack view">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
@@ -37,7 +37,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TyD-lg-jiA">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TyD-lg-jiA">
                                                 <rect key="frame" x="200" y="0.0" width="100" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="hUd-0U-kxk"/>
@@ -61,7 +61,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iKv-EX-b6w">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iKv-EX-b6w">
                                                 <rect key="frame" x="200" y="0.0" width="100" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="b6j-sP-Szu"/>
@@ -93,44 +93,49 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Byj-pG-4Ye">
+                                        <rect key="frame" x="0.0" y="105" width="300" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Calculate GPA">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="calculateProjectedGPA:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OH9-7Q-53w"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="jlU-WJ-NAL" firstAttribute="width" secondItem="Ilh-NT-cnr" secondAttribute="width" id="Qzt-24-0eP"/>
                                     <constraint firstItem="Ilh-NT-cnr" firstAttribute="width" secondItem="xVW-ca-52X" secondAttribute="width" id="Txt-Cj-ePO"/>
+                                    <constraint firstItem="Byj-pG-4Ye" firstAttribute="width" secondItem="ns6-xT-gns" secondAttribute="width" id="bQr-fH-Tci"/>
                                     <constraint firstItem="d2e-gP-oQr" firstAttribute="width" secondItem="iKv-EX-b6w" secondAttribute="width" id="rVE-nl-KPL"/>
                                 </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mIx-Kh-tVf" userLabel="classes table view">
-                                <rect key="frame" x="25" y="197" width="369" height="519"/>
+                                <rect key="frame" x="25" y="232" width="369" height="484"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="classCell" id="141-IP-URl" userLabel="class cell" customClass="ClassListTableViewCell" customModule="GPA_Calculator" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="369" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="141-IP-URl" id="JJg-27-Hwj">
-                                            <rect key="frame" x="0.0" y="0.0" width="369" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="369" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qgF-cR-DMa">
-                                                    <rect key="frame" x="0.0" y="0.0" width="354.33333333333337" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="369" height="44"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="200" translatesAutoresizingMaskIntoConstraints="NO" id="rqb-pm-K7c">
-                                                            <rect key="frame" x="25" y="11" width="354.33333333333337" height="44"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rqb-pm-K7c">
+                                                            <rect key="frame" x="25" y="11" width="369" height="44"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8w-RJ-eKb">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="104.33333333333331" height="44"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="200" id="cfM-51-Kls"/>
-                                                                    </constraints>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="104.33333333333334" height="44"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGD-D3-LzO">
-                                                                    <rect key="frame" x="304.33333333333337" y="0.0" width="50" height="44"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="50" id="8DY-xK-2bq"/>
-                                                                    </constraints>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGD-D3-LzO">
+                                                                    <rect key="frame" x="104.33333333333334" y="0.0" width="264.66666666666663" height="44"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -181,6 +186,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="projectGPADisplay" destination="d2e-gP-oQr" id="Zq7-e6-Mw3"/>
                         <outlet property="tableView" destination="mIx-Kh-tVf" id="fDP-1G-gyR"/>
                     </connections>
                 </viewController>

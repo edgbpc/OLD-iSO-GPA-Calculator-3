@@ -15,6 +15,7 @@ class GPACalculatorViewController: UIViewController {
     let model = GPACalculatorModel()
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var projectGPADisplay: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,7 @@ class GPACalculatorViewController: UIViewController {
         tableView.dataSource = self
         tableView.rowHeight = 64
         model.delegate = self
+        
         
     }
 
@@ -31,8 +33,15 @@ class GPACalculatorViewController: UIViewController {
         }
     }
     
+
+    @IBAction func calculateProjectedGPA(_ sender: Any) {
+        projectGPADisplay.text = model.calculateProjectedGPA()
+    }
+    
+    
     @IBAction func enterCurrentGPA(_ sender: UITextField) {
         model.setInitialGPA(sender.text ?? "")
+    
     }
 
     @IBAction func enterInitialGPA(_ sender: UITextField) {

@@ -18,7 +18,7 @@ class ClassListTableViewCell: UITableViewCell {
     
     func decorate(with classToShow: Class) {
         courseName.text = classToShow.courseName
-        gradePoints.text = ""
+        gradePoints.text = String(classToShow.creditHour * classToShow.getGradePointValue())
         
    
     
