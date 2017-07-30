@@ -50,15 +50,11 @@ class AddClassViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         let previousGrade = gradePickerData[previousGradePicker.selectedRow(inComponent: 0)]
         let newGrade = gradePickerData[newGradePicker.selectedRow(inComponent: 0)]
 
-//        print(courseName)
-//        print(isSubstitue)
-//        print(creditHours ?? 0)
-//        print(previousGrade)
-//        print(newGrade)
+
         
   
         
-        //left off here
+       
         let classToAdd = Class(substitute: isSubstitue, courseName: courseName, creditHour: creditHours!, previousGrade: previousGrade, newGrade: newGrade)
 //
         delegate?.save(classToAdd: classToAdd)
@@ -94,15 +90,7 @@ class AddClassViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
    
     }
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

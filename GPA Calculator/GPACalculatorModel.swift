@@ -162,6 +162,16 @@ class GPACalculatorModel {
         return classes.element(at: index)
     }
     
+    func classToEdit(atIndex index:Int, classToEdit: Class){
+        classes[index] = classToEdit
+        delegate?.dataRefreshed()
+    }
+    
+    func classToDelete(atIndex index:Int){
+        classes.remove(at: index)
+        delegate?.dataRefreshed()
+    }
+    
     
     func save(classToAdd: Class){
         classes.append(classToAdd)

@@ -9,7 +9,6 @@
 import UIKit
 
 
-
 class GPACalculatorViewController: UIViewController {
     
     let model = GPACalculatorModel()
@@ -20,6 +19,7 @@ class GPACalculatorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 64
         model.delegate = self
@@ -30,7 +30,13 @@ class GPACalculatorViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if let destination = segue.destination as? AddClassViewController {
             destination.delegate = self
-        }
+        } else if let destination = segue.destination as? CourseListDetailsViewController,
+            let index = sender as? Int,
+            let classDetail = model.classToShow(atIndex: index)  {
+            
+            destination.index = index
+            destination.classDetail = classDetail
+            destination.delegate = self        }
     }
     
 
@@ -46,6 +52,12 @@ class GPACalculatorViewController: UIViewController {
 
     @IBAction func enterInitialGPA(_ sender: UITextField) {
         model.setinitialCreditHours(sender.text ?? "")
+    }
+}
+
+extension GPACalculatorViewController: CourseListDetailsDelegate{
+    func classToEdit(atIndex index: Int, classToEdit: Class) {
+        model.classToEdit(atIndex: index, classToEdit: classToEdit)
     }
 }
 
@@ -77,6 +89,20 @@ extension GPACalculatorViewController: UITableViewDataSource {
         cell.decorate(with: classToShow)
         cell.accessoryType = UITableViewCellAccessoryType.none
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == UITableViewCellEditingStyle.delete
+        {
+            model.classToDelete(atIndex: indexPath.row)
+        }
+    }
+}
+
+extension GPACalculatorViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showCourseDetails", sender: indexPath.row)
     }
 }
 
