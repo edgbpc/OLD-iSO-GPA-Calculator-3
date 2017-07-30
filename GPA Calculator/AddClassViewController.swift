@@ -16,6 +16,8 @@ class AddClassViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     weak var delegate: AddClassViewControllerDelegate?
     
+    @IBOutlet weak var creditHoursLabel: UILabel!
+    
     @IBOutlet weak var courseNameField: UITextField!
     @IBOutlet weak var isSubstituteSwitch: UISwitch!
     @IBOutlet weak var creditHoursField: UITextField!
@@ -23,6 +25,7 @@ class AddClassViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet weak var newGradePicker: UIPickerView!
     
     var gradePickerData: [String] = [String]()
+    var previousGradePickerData: [String] = [String]()
     
     
     override func viewDidLoad() {
@@ -35,7 +38,9 @@ class AddClassViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         self.newGradePicker.delegate = self
         self.previousGradePicker.dataSource = self
         
-    gradePickerData = ["A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F", "FN"]
+        gradePickerData = ["A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F", "FN"]
+        
+        previousGradePickerData = ["C-", "D+", "D", "D-", "F", "Fn"]
     }
     
     @IBAction func enterCourseName(_ sender: UITextField) {
@@ -45,9 +50,9 @@ class AddClassViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBAction func commitClassButtonTapped(_ sender: Any) {
         let courseName = courseNameField.text ?? ""
         let isSubstitue = isSubstituteSwitch.isOn
-        let creditHours = Double(creditHoursField.text ?? "")
+        guard let creditHours = Double(creditHoursField.text!) else  { creditHoursLabel.textColor = UIColor.red; return }
        
-        let previousGrade = gradePickerData[previousGradePicker.selectedRow(inComponent: 0)]
+        let previousGrade = previousGradePickerData[previousGradePicker.selectedRow(inComponent: 0)]
         let newGrade = gradePickerData[newGradePicker.selectedRow(inComponent: 0)]
 
 
@@ -55,7 +60,7 @@ class AddClassViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
   
         
        
-        let classToAdd = Class(substitute: isSubstitue, courseName: courseName, creditHour: creditHours!, previousGrade: previousGrade, newGrade: newGrade)
+        let classToAdd = Class(substitute: isSubstitue, courseName: courseName, creditHour: creditHours, previousGrade: previousGrade, newGrade: newGrade)
 //
         delegate?.save(classToAdd: classToAdd)
         let _ = navigationController?.popViewController(animated: true)
@@ -74,14 +79,21 @@ class AddClassViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     // The number of rows of data
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return gradePickerData.count
+        if newGradePicker == pickerView {
+            return gradePickerData.count
+        } else {
+            return previousGradePickerData.count
+        }
     }
-    
     // The data to return for the row and component (column) that's being passed in
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return gradePickerData[row]
+        
+        if newGradePicker == pickerView {
+            return gradePickerData[row]
+        } else {
+            return previousGradePickerData[row]
+        }
     }
-    
     // Catpure the picker view selection
     @nonobjc func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) -> String  {
     
