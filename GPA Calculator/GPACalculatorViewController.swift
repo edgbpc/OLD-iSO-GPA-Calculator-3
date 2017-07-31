@@ -16,6 +16,10 @@ class GPACalculatorViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var projectGPADisplay: UITextField!
     
+   
+    @IBOutlet weak var currentGPAField: UITextField!
+    @IBOutlet weak var currentCreditHoursField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,18 +45,13 @@ class GPACalculatorViewController: UIViewController {
     
 
     @IBAction func calculateProjectedGPA(_ sender: Any) {
+        model.setInitialGPA(currentGPAField.text ?? "")
+        model.setinitialCreditHours(currentCreditHoursField.text ?? "")
         projectGPADisplay.text = model.calculateProjectedGPA()
     }
     
     
-    @IBAction func enterCurrentGPA(_ sender: UITextField) {
-        model.setInitialGPA(sender.text ?? "")
-    
-    }
 
-    @IBAction func enterInitialGPA(_ sender: UITextField) {
-        model.setinitialCreditHours(sender.text ?? "")
-    }
 }
 
 extension GPACalculatorViewController: CourseListDetailsDelegate{

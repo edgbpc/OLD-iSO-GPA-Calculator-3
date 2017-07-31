@@ -23,6 +23,7 @@ class AddClassViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet weak var creditHoursField: UITextField!
     @IBOutlet weak var previousGradePicker: UIPickerView!
     @IBOutlet weak var newGradePicker: UIPickerView!
+    @IBOutlet weak var previousGradeLabel: UILabel!
     
     var gradePickerData: [String] = [String]()
     var previousGradePickerData: [String] = [String]()
@@ -38,15 +39,33 @@ class AddClassViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         self.newGradePicker.delegate = self
         self.previousGradePicker.dataSource = self
         
-        gradePickerData = ["A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F", "FN"]
+        gradePickerData = ["No Grade", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F", "FN"]
         
-        previousGradePickerData = ["C-", "D+", "D", "D-", "F", "Fn"]
+        previousGradePickerData = ["N/A", "C-", "D+", "D", "D-", "F", "Fn"]
+        
+        //start with switch off
+        
+        isSubstituteSwitch.isOn = false
+        previousGradePicker.isUserInteractionEnabled = false
+        previousGradePicker.isHidden = true
+        previousGradeLabel.isHidden = true
     }
     
     @IBAction func enterCourseName(_ sender: UITextField) {
         
     }
     
+    @IBAction func substituteSwitchFlipped(_ sender: Any) {
+         if isSubstituteSwitch.isOn {
+            previousGradePicker.isHidden = false
+            previousGradePicker.isUserInteractionEnabled = true
+            previousGradeLabel.isHidden = false
+        } else {
+            previousGradePicker.isHidden = true
+            previousGradeLabel.isHidden = true
+            previousGradePicker.isUserInteractionEnabled = false
+        }
+    }
     @IBAction func commitClassButtonTapped(_ sender: Any) {
         let courseName = courseNameField.text ?? ""
         let isSubstitue = isSubstituteSwitch.isOn

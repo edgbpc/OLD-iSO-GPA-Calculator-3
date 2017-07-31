@@ -97,6 +97,7 @@ class CourseListDetailsViewController: UIViewController, UIPickerViewDelegate, U
         let classToEdit = Class(substitute: substituteSwitcher.isOn, courseName: courseNameField.text!, creditHour: Double(creditHoursWorth.text!)!, previousGrade: gradePickerData[previousGradePicker.selectedRow(inComponent: 0)], newGrade: gradePickerData[newGradePicker.selectedRow(inComponent: 0)])
         
         delegate?.classToEdit(atIndex: index, classToEdit: classToEdit)
+        let _ = navigationController?.popViewController(animated: true)
         
     }
     

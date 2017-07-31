@@ -21,6 +21,7 @@ struct Class {
 
     func getGradePointValue() -> Double {
         switch newGrade {
+        case "No Grade" : return 0  //classes with No Grade does add to grade points
         case "A" : return 4.0
         case "A-" : return 3.7
         case "B+" : return 3.3
@@ -40,13 +41,6 @@ struct Class {
 
     func getPreviousGradePointValue() -> Double {
         switch previousGrade{
-        case "A" : return 4.0
-        case "A-" : return 3.7
-        case "B+" : return 3.3
-        case "B" : return 3.0
-        case "B-" : return 2.7
-        case "C+" : return 2.3
-        case "C" : return 2.0
         case "C-" : return 1.7
         case "D+" : return 1.3
         case "D" : return 1.0
@@ -99,8 +93,11 @@ class GPACalculatorModel {
         var sumOfNewCreditHoursCompleted: Double = 0
         
         for index in 0..<classes.count {
+            //class with No Grade selected do not increase completed hours
+            if classes[index].newGrade != "No Grade"{
+                sumOfNewCreditHoursCompleted += (classes[index].creditHour)
+            }
             
-            sumOfNewCreditHoursCompleted += (classes[index].creditHour)
         }
         return sumOfNewCreditHoursCompleted
     }
