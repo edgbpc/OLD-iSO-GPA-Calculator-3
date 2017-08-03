@@ -66,6 +66,7 @@ class GPACalculatorModel {
     private var initialGradePoints: Double {
         return (initialGPA * initialCreditHours)
     }
+    
     private var projectedGPA: Double = 0
     
     //unused
@@ -137,7 +138,12 @@ class GPACalculatorModel {
         
         let projectedGPA = newGradePoints/newCreditHours
 
+        if projectedGPA.isNaN {
+            return "0.0"
+        } else {
         return String(projectedGPA.roundTo(places: 2))
+        }
+    
     }
 
 

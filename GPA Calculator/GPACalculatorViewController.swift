@@ -20,6 +20,10 @@ class GPACalculatorViewController: UIViewController {
     @IBOutlet weak var currentGPAField: UITextField!
     @IBOutlet weak var currentCreditHoursField: UITextField!
     
+
+    @IBOutlet  weak var tappableBackgroundView: UIView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,6 +32,14 @@ class GPACalculatorViewController: UIViewController {
         tableView.rowHeight = 64
         model.delegate = self
         
+
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
+        tappableBackgroundView.addGestureRecognizer(tapGestureRecognizer)
+        tappableBackgroundView.isHidden = true
+        
+        currentGPAField.delegate = self
+        currentCreditHoursField.delegate = self
         
     }
 
@@ -50,6 +62,11 @@ class GPACalculatorViewController: UIViewController {
         projectGPADisplay.text = model.calculateProjectedGPA()
     }
     
+    @objc private func backgroundTapped() {
+        self.view.endEditing(true)  // this actually loops through all this view's subviews and resigns the first responder on all of them
+        tappableBackgroundView.isHidden = true
+    }
+
     
 
 }
@@ -86,7 +103,7 @@ extension GPACalculatorViewController: UITableViewDataSource {
             else { return UITableViewCell() }
         
         cell.decorate(with: classToShow)
-        cell.accessoryType = UITableViewCellAccessoryType.none
+        
         return cell
     }
     
@@ -97,6 +114,8 @@ extension GPACalculatorViewController: UITableViewDataSource {
             model.classToDelete(atIndex: indexPath.row)
         }
     }
+    
+    
 }
 
 extension GPACalculatorViewController: UITableViewDelegate {
@@ -106,3 +125,17 @@ extension GPACalculatorViewController: UITableViewDelegate {
 }
 
 
+extension GPACalculatorViewController: UITextFieldDelegate {
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        tappableBackgroundView.isHidden = false
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        tappableBackgroundView.isHidden = true
+        return true
+    }
+    
+}
