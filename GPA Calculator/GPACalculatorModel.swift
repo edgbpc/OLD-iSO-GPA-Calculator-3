@@ -21,7 +21,7 @@ struct Class {
 
     func getGradePointValue() -> Double {
         switch newGrade {
-        case "No Grade" : return 0  //classes with No Grade does add to grade points
+        case "No Grade" : return 0  // so classes with No Grade does add to grade points
         case "A" : return 4.0
         case "A-" : return 3.7
         case "B+" : return 3.3
@@ -68,9 +68,6 @@ class GPACalculatorModel {
     }
     
     private var projectedGPA: Double = 0
-    
-    //unused
-//    let gradePointValues : [String:Double] = ["A":4.0, "A-":3.7, "B+":3.3, "B":3.0, "B-":2.7, "C+":2.3, "C":2.0, "C-":1.7, "D+":1.3, "D":1.0, "D-":0.7, "F":0, "FN":0]
     
     
     var count: Int {
@@ -138,10 +135,12 @@ class GPACalculatorModel {
         
         let projectedGPA = newGradePoints/newCreditHours
 
-        if projectedGPA.isNaN {
+        if projectedGPA.isNaN { // to control if someone hits calculate without entering anything
             return "0.0"
+        } else if projectedGPA > 4 {
+            return "Invalid"  //to control to ensure no calculation above 4.0 which can occur in some circumstances such as saying a course is a replacement when there is not sufficient gradepoints to account for that original course
         } else {
-        return String(projectedGPA.roundTo(places: 2))
+            return String(projectedGPA.roundTo(places: 2))
         }
     
     }
@@ -149,10 +148,7 @@ class GPACalculatorModel {
 
 
 
-    //unused
-//    func getClassesArray () -> [Class]{
-//        return classes
-//    }
+
     
     init(){}
     

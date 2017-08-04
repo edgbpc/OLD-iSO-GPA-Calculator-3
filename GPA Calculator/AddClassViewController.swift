@@ -25,6 +25,8 @@ class AddClassViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet weak var newGradePicker: UIPickerView!
     @IBOutlet weak var previousGradeLabel: UILabel!
     
+    @IBOutlet weak var tappableBackgroundView: UIView!
+    
     var gradePickerData: [String] = [String]()
     var previousGradePickerData: [String] = [String]()
     
@@ -49,6 +51,15 @@ class AddClassViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         previousGradePicker.isUserInteractionEnabled = false
         previousGradePicker.isHidden = true
         previousGradeLabel.isHidden = true
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
+        tappableBackgroundView.addGestureRecognizer(tapGestureRecognizer)
+        tappableBackgroundView.isHidden = true
+        
+        courseNameField.delegate = self
+        creditHoursField.delegate = self
+        
+       
     }
     
     @IBAction func enterCourseName(_ sender: UITextField) {
@@ -121,7 +132,26 @@ class AddClassViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
    
     }
 
+    
+    @objc private func backgroundTapped() {
+        self.view.endEditing(true)  
+        tappableBackgroundView.isHidden = true
+    }
 
+}
+
+extension AddClassViewController: UITextFieldDelegate {
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        tappableBackgroundView.isHidden = false
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        tappableBackgroundView.isHidden = true
+        return true
+}
 
 }
 

@@ -417,10 +417,18 @@
                                     <constraint firstItem="Ff5-Nq-Zmp" firstAttribute="width" secondItem="wS2-vv-iBc" secondAttribute="width" id="y7T-s3-13x"/>
                                 </constraints>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jCy-hJ-Q0s">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="jCy-hJ-Q0s" firstAttribute="centerY" secondItem="hFc-bX-qbF" secondAttribute="centerY" id="6zg-n6-3yU"/>
+                            <constraint firstItem="jCy-hJ-Q0s" firstAttribute="width" secondItem="hFc-bX-qbF" secondAttribute="width" id="HoZ-37-cqR"/>
+                            <constraint firstItem="jCy-hJ-Q0s" firstAttribute="height" secondItem="hFc-bX-qbF" secondAttribute="height" id="XXr-kk-BHt"/>
                             <constraint firstItem="wS2-vv-iBc" firstAttribute="width" secondItem="hFc-bX-qbF" secondAttribute="width" constant="-10" id="YNf-M6-PyC"/>
+                            <constraint firstItem="jCy-hJ-Q0s" firstAttribute="centerX" secondItem="hFc-bX-qbF" secondAttribute="centerX" id="j6v-jc-xOk"/>
                             <constraint firstItem="wS2-vv-iBc" firstAttribute="top" secondItem="WmQ-ZG-kMS" secondAttribute="bottom" constant="25" id="peC-iD-zlw"/>
                             <constraint firstItem="wS2-vv-iBc" firstAttribute="leading" secondItem="hFc-bX-qbF" secondAttribute="leading" constant="5" id="uia-rJ-020"/>
                         </constraints>
@@ -436,6 +444,7 @@
                         <outlet property="replacedGradeField" destination="Ff5-Nq-Zmp" id="C4c-PP-1ys"/>
                         <outlet property="replacedPointsField" destination="56C-Qs-Qes" id="F09-G8-6zQ"/>
                         <outlet property="substituteSwitcher" destination="V7w-w3-YfF" id="RUb-jk-56F"/>
+                        <outlet property="tappableBackgroundView" destination="jCy-hJ-Q0s" id="4lb-KP-fB3"/>
                         <outlet property="wasSubstituteLabel" destination="f3F-Bq-0E9" id="0ba-zl-D7T"/>
                     </connections>
                 </viewController>
@@ -576,12 +585,20 @@
                                     <constraint firstItem="e9W-Vu-Kgg" firstAttribute="width" secondItem="Y8u-5n-dor" secondAttribute="width" id="wux-Of-vfJ"/>
                                 </constraints>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MTv-XX-zJT">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Y8u-5n-dor" firstAttribute="top" secondItem="BGc-E5-8Vr" secondAttribute="bottom" constant="15" id="FC9-Ki-bc4"/>
                             <constraint firstItem="Y8u-5n-dor" firstAttribute="width" secondItem="c4J-Yo-aHM" secondAttribute="width" constant="-25" id="OLr-HD-AJm"/>
                             <constraint firstItem="Y8u-5n-dor" firstAttribute="leading" secondItem="c4J-Yo-aHM" secondAttribute="leadingMargin" constant="-5" id="RvH-w6-FCw"/>
+                            <constraint firstItem="MTv-XX-zJT" firstAttribute="width" secondItem="c4J-Yo-aHM" secondAttribute="width" id="cKA-6b-auz"/>
+                            <constraint firstItem="MTv-XX-zJT" firstAttribute="centerY" secondItem="c4J-Yo-aHM" secondAttribute="centerY" id="rUo-Kf-K8Y"/>
+                            <constraint firstItem="MTv-XX-zJT" firstAttribute="height" secondItem="c4J-Yo-aHM" secondAttribute="height" id="sN6-m0-eQj"/>
+                            <constraint firstItem="MTv-XX-zJT" firstAttribute="centerX" secondItem="c4J-Yo-aHM" secondAttribute="centerX" id="zvY-Nj-CWJ"/>
                         </constraints>
                     </view>
                     <connections>
@@ -592,6 +609,7 @@
                         <outlet property="newGradePicker" destination="NDr-cE-7cw" id="19E-s4-gKR"/>
                         <outlet property="previousGradeLabel" destination="GkN-Bs-2k7" id="Obg-c8-so1"/>
                         <outlet property="previousGradePicker" destination="kEx-T3-g9P" id="Xrd-FB-Qg2"/>
+                        <outlet property="tappableBackgroundView" destination="MTv-XX-zJT" id="sLU-Ku-wVR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ekM-sp-6O4" userLabel="First Responder" sceneMemberID="firstResponder"/>

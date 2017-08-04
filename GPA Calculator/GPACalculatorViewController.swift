@@ -63,7 +63,7 @@ class GPACalculatorViewController: UIViewController {
     }
     
     @objc private func backgroundTapped() {
-        self.view.endEditing(true)  // this actually loops through all this view's subviews and resigns the first responder on all of them
+        self.view.endEditing(true)
         tappableBackgroundView.isHidden = true
     }
 

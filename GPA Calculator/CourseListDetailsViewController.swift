@@ -35,8 +35,12 @@ class CourseListDetailsViewController: UIViewController, UIPickerViewDelegate, U
     @IBOutlet weak var replacedPointsField: UITextField!
     @IBOutlet weak var newGradePicker: UIPickerView!
     
+    @IBOutlet weak var tappableBackgroundView: UIView!
     
-      var gradePickerData = ["A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F", "FN"]
+    var gradePickerData = ["A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F", "FN"]
+    
+    var previousGradePickerData = ["N/A", "C-", "D+", "D", "D-", "F", "Fn"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,6 +55,9 @@ class CourseListDetailsViewController: UIViewController, UIPickerViewDelegate, U
         previousGradePicker.isHidden = true
         newGradePicker.isHidden = true
         substituteSwitcher.isHidden = true
+        
+        substituteSwitcher.isOn = (classDetail?.substitute)!
+
         
         guard let classDetail = self.classDetail else { return }
         courseNameField.text = classDetail.courseName
@@ -68,8 +75,13 @@ class CourseListDetailsViewController: UIViewController, UIPickerViewDelegate, U
             replacedPointsField.text = "N/A"
         }
     
-
-        // Do any additional setup after loading the view.
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
+        tappableBackgroundView.addGestureRecognizer(tapGestureRecognizer)
+        tappableBackgroundView.isHidden = true
+        
+        courseNameField.delegate = self
+        creditHoursWorth.delegate = self
+        
     }
 
     @IBAction func enableEditing(_ sender: Any) {
@@ -94,7 +106,7 @@ class CourseListDetailsViewController: UIViewController, UIPickerViewDelegate, U
         
     
     
-        let classToEdit = Class(substitute: substituteSwitcher.isOn, courseName: courseNameField.text!, creditHour: Double(creditHoursWorth.text!)!, previousGrade: gradePickerData[previousGradePicker.selectedRow(inComponent: 0)], newGrade: gradePickerData[newGradePicker.selectedRow(inComponent: 0)])
+        let classToEdit = Class(substitute: substituteSwitcher.isOn, courseName: courseNameField.text!, creditHour: Double(creditHoursWorth.text!)!, previousGrade: previousGradePickerData[previousGradePicker.selectedRow(inComponent: 0)], newGrade: gradePickerData[newGradePicker.selectedRow(inComponent: 0)])
         
         delegate?.classToEdit(atIndex: index, classToEdit: classToEdit)
         let _ = navigationController?.popViewController(animated: true)
@@ -108,12 +120,20 @@ class CourseListDetailsViewController: UIViewController, UIPickerViewDelegate, U
     
     // The number of rows of data
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return gradePickerData.count
+        if newGradePicker == pickerView {
+            return gradePickerData.count
+        } else {
+            return previousGradePickerData.count
+        }
     }
     
     // The data to return for the row and component (column) that's being passed in
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return gradePickerData[row]
+        if newGradePicker == pickerView {
+            return gradePickerData[row]
+        } else {
+            return previousGradePickerData[row]
+        }
     }
     
     // Catpure the picker view selection
@@ -123,7 +143,23 @@ class CourseListDetailsViewController: UIViewController, UIPickerViewDelegate, U
         
         
     }
+    
+    @objc private func backgroundTapped() {
+        self.view.endEditing(true)
+        tappableBackgroundView.isHidden = true
+    }
+}
 
-
-
+extension CourseListDetailsViewController: UITextFieldDelegate {
+        
+       func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+            tappableBackgroundView.isHidden = false
+            return true
+        }
+        
+        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            self.view.endEditing(true)
+            tappableBackgroundView.isHidden = true
+            return true
+        }
 }
