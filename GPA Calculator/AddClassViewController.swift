@@ -43,7 +43,7 @@ class AddClassViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         gradePickerData = ["No Grade", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F", "FN"]
         
-        previousGradePickerData = ["N/A", "C-", "D+", "D", "D-", "F", "Fn"]
+        previousGradePickerData = ["C-", "D+", "D", "D-", "F", "Fn"]
         
         //start with switch off
         

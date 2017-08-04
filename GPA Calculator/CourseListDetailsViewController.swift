@@ -39,7 +39,7 @@ class CourseListDetailsViewController: UIViewController, UIPickerViewDelegate, U
     
     var gradePickerData = ["A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F", "FN"]
     
-    var previousGradePickerData = ["N/A", "C-", "D+", "D", "D-", "F", "Fn"]
+    var previousGradePickerData = ["C-", "D+", "D", "D-", "F", "Fn"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
