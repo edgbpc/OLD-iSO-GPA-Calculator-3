@@ -37,7 +37,7 @@ class CourseListDetailsViewController: UIViewController, UIPickerViewDelegate, U
     
     @IBOutlet weak var tappableBackgroundView: UIView!
     
-    var gradePickerData = ["A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F", "FN"]
+    var gradePickerData = ["No Grade", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F", "FN"]
     
     var previousGradePickerData = ["C-", "D+", "D", "D-", "F", "Fn"]
     
